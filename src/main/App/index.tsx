@@ -1,8 +1,8 @@
-import React, { memo } from "react";
-import './index.scss';
-import TitleBar from "./TitleBar";
-import LeftBar from "./LeftBar";
-import MainView from "./MainView";
+import React, {memo} from 'react'
+import './index.scss'
+import TitleBar from './TitleBar'
+import LeftBar from './LeftBar'
+import MainView from '@main/App/MainView'
 
 const App = memo(function App() {
   return (
@@ -11,7 +11,7 @@ const App = memo(function App() {
       <LeftBar />
       <MainView />
     </div>
-  );
-});
+  )
+})
 
-export default App;
+export default App

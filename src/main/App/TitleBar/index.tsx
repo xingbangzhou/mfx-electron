@@ -1,12 +1,12 @@
-import React, { memo } from "react";
-import './index.scss';
+import React, {memo} from 'react'
+import './index.scss'
 
 const TitleBar = memo(function TitleBar() {
-  return <div className="titleBarContainer">
-    <div className="titleBar">
-      <p>Electron</p>
+  return (
+    <div className="titleBarContainer">
+      <div className="titleBar"></div>
     </div>
-  </div>
+  )
 })
 
 export default TitleBar

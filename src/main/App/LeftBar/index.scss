@@ -5,4 +5,24 @@
   bottom: 0;
   width: 48px;
   background-color: #333333;
+
+  .settings {
+    position: absolute;
+    bottom: 10px;
+    left: 8px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    padding: 4px;
+
+    path {
+      width: 32px;
+      height: 32px;
+      fill: #898989 !important;
+    }
+
+    &:hover {
+      background-color: rgba($color: #898989, $alpha: 0.2);
+    }
+  }
 }

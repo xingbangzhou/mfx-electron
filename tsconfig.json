@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "jsx": "preserve",
     "paths": {
-      "main/*": ["src/main/*"],
+      "@core/*": ["src/core/*"],
+      "@main/*": ["src/main/*"],
     }
   },
   "include": ["src/**/*"]

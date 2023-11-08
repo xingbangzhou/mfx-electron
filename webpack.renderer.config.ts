@@ -1,11 +1,13 @@
-import type { Configuration, RuleSetUseItem } from 'webpack';
+import type {Configuration, RuleSetUseItem} from 'webpack'
 
-import path from 'path';
-import { rules } from './webpack.rules';
-import { plugins } from './webpack.plugins';
+import path from 'path'
+import {rules} from './webpack.rules'
+import {plugins} from './webpack.plugins'
 
+// STYLE
 function styleLoaders(rules: RuleSetUseItem[] = []): RuleSetUseItem[] {
-  return [{
+  return [
+    {
       loader: require.resolve('style-loader'),
       options: {},
     },
@@ -27,10 +29,8 @@ function styleLoaders(rules: RuleSetUseItem[] = []): RuleSetUseItem[] {
 
 rules.push({
   test: /\.css$/,
-  use: [
-    ...styleLoaders()
-  ],
-});
+  use: [...styleLoaders()],
+})
 
 rules.push({
   test: /\.(scss|sass)$/,
@@ -40,12 +40,13 @@ rules.push({
         loader: require.resolve('sass-loader'),
         options: {
           implementation: require('sass'),
-        }
-      }
-    ])
-  ]
+        },
+      },
+    ]),
+  ],
 })
 
+// TSX
 rules.push({
   test: /\.tsx$/,
   exclude: /(node_modules|bower_components)/,
@@ -53,9 +54,28 @@ rules.push({
     loader: 'babel-loader',
     options: {
       exclude: /node_modules/,
-      presets: ['@babel/preset-react']
-    }
+      presets: ['@babel/preset-react'],
+    },
   },
+})
+
+// PNG
+rules.push({
+  test: /\.png?$/,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        esModule: false,
+      },
+    },
+  ],
+})
+
+// SVG
+rules.push({
+  test: /\.svg$/,
+  use: ['@svgr/webpack'],
 })
 
 export const rendererConfig: Configuration = {
@@ -65,8 +85,9 @@ export const rendererConfig: Configuration = {
   plugins,
   resolve: {
     alias: {
-      'main/*': path.resolve(__dirname, 'src/main/*')
+      '@main': path.resolve(__dirname, 'src/main'),
+      '@popup': path.resolve(__dirname, 'src/popup'),
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
   },
-};
+}
