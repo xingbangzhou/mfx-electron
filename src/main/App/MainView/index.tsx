@@ -18,17 +18,6 @@ const MainView = memo(function MainView() {
       >
         关闭调试器
       </button>
-      <button
-        onClick={() => {
-          window.mainElectronApi.openBrowserWin({
-            url: 'http://localhost:5002/',
-            width: 400,
-            height: 600,
-          })
-        }}
-      >
-        打开弹窗
-      </button>
     </div>
   )
 })

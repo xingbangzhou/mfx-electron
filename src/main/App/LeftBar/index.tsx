@@ -6,6 +6,7 @@ const LeftBar = memo(function LeftBar() {
   useEffect(() => {
     window.mainElectronApi.onWinMessage((event, data, windowId) => {
       console.log('Main', 'onWinMessage: ', event, data, windowId)
+      window.mainElectronApi.sendMessageToWin("i'm mainwindow, nice to see you!", windowId)
     })
   }, [])
 
