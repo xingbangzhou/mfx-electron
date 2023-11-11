@@ -26,3 +26,9 @@ export const sendMessageToWin = (data: unknown, windowId = 0) => {
 export const onWinMessage = (listener: WinMessageListener) => {
   ipcRenderer.on(BrowserWinOps.OnWinMessage, listener)
 }
+
+export const openSettings = async () => {
+  const result = await ipcRenderer.invoke(BrowserWinOps.OpenSettgins)
+
+  return result as {windowId: number} | undefined
+}

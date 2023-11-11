@@ -7,7 +7,7 @@ export enum BrowserWinOps {
   OnWinClosed = 'main:send:win-closed',
   SendMessageToWin = 'render:send:send-message-to-win',
   OnWinMessage = 'man:send:win-message',
-  OpenSettgins = 'render:',
+  OpenSettgins = 'render:invoke:open-settings',
 }
 
 export interface OpenBrowserWinProps {
@@ -19,6 +19,8 @@ export interface OpenBrowserWinProps {
   fullscreenable?: boolean
   resizable?: boolean
   transparent?: boolean
+  useSystemTitleBar?: boolean
+  maximizable?: boolean
 }
 
 export interface WinClosedListener {

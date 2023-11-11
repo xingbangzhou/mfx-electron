@@ -4,8 +4,12 @@ interface OpenBrowserWinProps {
   url: string
   width: number
   height: number
-  frameless?: boolean
+  frame?: boolean
+  fullscreen?: boolean
+  fullscreenable?: boolean
+  resizable?: boolean
   transparent?: boolean
+  useSystemTitleBar?: boolean
 }
 
 interface WinClosedListener {
@@ -25,6 +29,7 @@ declare global {
     onWinClosed: (listener: WinClosedListener) => void
     sendMessageToWin: (data: unknown, windowId?: number) => void
     onWinMessage: (listener: WinMessageListener) => void
+    openSettings: () => Promise<{windowId: number} | undefined>
   }
 
   interface Window {

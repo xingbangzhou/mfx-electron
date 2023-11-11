@@ -52,7 +52,21 @@ class BrowserWins {
       if (!win) return
 
       const fromWin = BrowserWindow.fromWebContents(event.sender)
+
       win.webContents.send(BrowserWinOps.OnWinMessage, data, fromWin?.id)
+    })
+    // OpenSettings
+    ipcMain.handle(BrowserWinOps.OpenSettgins, () => {
+      const settingsPopup = this.createPopup({
+        url: POPUP_WINDOW_WEBPACK_ENTRY,
+        width: 670,
+        height: 467,
+        useSystemTitleBar: true,
+        resizable: false,
+        maximizable: false,
+      })
+
+      return {windowId: settingsPopup.id}
     })
   }
 
@@ -85,26 +99,27 @@ class BrowserWins {
     })
   }
 
-  openSettings() {
-    this.createPopup({
-      url: POPUP_WINDOW_WEBPACK_ENTRY,
-      width: 670,
-      height: 467,
-    })
-  }
-
   private createPopup(props: OpenBrowserWinProps) {
     const popup = new BrowserWindow({
       parent: this.mainWindow,
       width: props.width,
       height: props.height,
       show: false,
-      frame: false,
-      transparent: true,
+      frame: props.frame,
+      fullscreen: props.fullscreen,
+      fullscreenable: props.fullscreenable,
+      resizable: props.resizable,
+      transparent: props.transparent,
       webPreferences: {
         preload: POPUP_WINDOW_PRELOAD_WEBPACK_ENTRY,
         webSecurity: false,
       },
+      ...(props.useSystemTitleBar
+        ? {
+            titleBarStyle: 'hidden',
+            titleBarOverlay: titleBarStyle,
+          }
+        : undefined),
     })
     logger.log('BrowserWins', 'createPopup: ', props, popup.id)
 
