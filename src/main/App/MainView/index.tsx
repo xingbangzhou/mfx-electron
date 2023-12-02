@@ -1,7 +1,14 @@
-import React, {memo} from 'react'
+import React, {memo,  useState} from 'react'
 import './index.scss'
+import { useInterval } from 'ahooks'
 
 const MainView = memo(function MainView() {
+  const [timeNum, setTimeNum] = useState(0)
+
+  useInterval(() => {
+    setTimeNum(timeNum+1)
+  }, 1000/30)
+
   return (
     <div className="mainView">
       <button
@@ -18,6 +25,7 @@ const MainView = memo(function MainView() {
       >
         关闭调试器
       </button>
+      <div className='timing'>{timeNum}</div>
     </div>
   )
 })

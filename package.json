@@ -30,6 +30,7 @@
     "@electron-forge/plugin-webpack": "^6.4.2",
     "@electron-forge/shared-types": "^6.4.2",
     "@svgr/webpack": "^8.1.0",
+    "@types/fluent-ffmpeg": "^2.1.24",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
@@ -58,7 +59,10 @@
     "url-loader": "^4.1.1"
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "ahooks": "^3.7.8",
     "electron-squirrel-startup": "^1.0.0",
+    "fluent-ffmpeg": "^2.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
