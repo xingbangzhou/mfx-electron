@@ -1,7 +1,8 @@
 import {BrowserWindow, ipcMain} from 'electron'
 import {BrowserWinOps, OpenBrowserWinProps} from './types'
 import logger from '@core/utils/logger'
-import CaptureTask from './CaptureTask'
+import LiveWindow from './LiveWindow'
+// import CaptureTask from './CaptureTask'
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
@@ -100,8 +101,10 @@ class BrowserWins {
     mainWindow.once('ready-to-show', () => {
       mainWindow.show()
 
-      const task = new CaptureTask(mainWindow)
-      task.start()
+      // const task = new CaptureTask(mainWindow)
+      // task.start()
+      const live = new LiveWindow(mainWindow)
+      live.startLive()
     })
   }
 
