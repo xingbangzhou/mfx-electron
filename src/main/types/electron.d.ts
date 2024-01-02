@@ -1,6 +1,6 @@
 export {}
 
-interface OpenBrowserWindowProps {
+export interface OpenBrowserWindowProps {
   url: string
   width: number
   height: number
@@ -11,14 +11,16 @@ interface OpenBrowserWindowProps {
   transparent?: boolean
   useSystemTitleBar?: boolean
   maximizable?: boolean
+  // 指定唯一key
+  key?: string
 }
 
-interface WindowClosedListener {
-  (event: IpcRendererEvent, windowId: number): void
+export interface WindowClosedListener {
+  (event: any, windowId: number): void
 }
 
-interface WindowMessageListener {
-  (event: IpcRendererEvent, data: unknown, windowId?: number): void
+export interface WindowMessageListener {
+  (event: any, data: unknown, windowId?: number): void
 }
 
 declare global {

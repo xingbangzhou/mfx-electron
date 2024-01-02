@@ -3,8 +3,8 @@ import './index.scss'
 
 const MainView = memo(function MainView() {
   useEffect(() => {
-    window.popupElectronApi.onWinMessage((event, data, windowId) => {
-      console.log('Popup', 'onWinMessage: ', event, data, windowId)
+    window.electronPopup.onWindowMessage((event, data, windowId) => {
+      console.log('Popup', 'onWindowMessage: ', event, data, windowId)
     })
   }, [])
 
@@ -12,21 +12,21 @@ const MainView = memo(function MainView() {
     <div className="mainView">
       <button
         onClick={() => {
-          window.popupElectronApi.sendMessageToWin("hello i'm popup!")
+          window.electronPopup.sendMessageToWindow("hello i'm popup!")
         }}
       >
         发送消息
       </button>
       <button
         onClick={() => {
-          window.popupElectronApi.openDevTools()
+          window.electronPopup.openDevTool()
         }}
       >
         打开调试器
       </button>
       <button
         onClick={() => {
-          window.popupElectronApi.closeDevTools()
+          window.electronPopup.closeDevTool()
         }}
       >
         关闭调试器

@@ -1,7 +1,7 @@
 export {}
 
 interface WindowMessageListener {
-  (event: IpcRendererEvent, data: unknown, windowId?: number): void
+  (event: any, data: unknown, windowId?: number): void
 }
 
 declare global {
@@ -10,10 +10,10 @@ declare global {
     closeDevTool: () => void
     close: () => void
     sendMessageToWindow: (data: unknown, windowId?: number) => void
-    onWindowMessage: (listener: WinMessageListener) => void
+    onWindowMessage: (listener: WindowMessageListener) => void
   }
 
   interface Window {
-    electronPopup: ElectronPopup
+    electronPopup?: ElectronPopup
   }
 }

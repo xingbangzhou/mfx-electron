@@ -32,6 +32,7 @@ export const sendMessageToWindow = (data: unknown, windowId = 0) => {
   ipcRenderer.send(BrowserWdinowEventID.SendMessageToWindow, data, windowId)
 }
 
+// WindowMessage
 export const onWindowMessage = (listener: WindowMessageListener) => {
   ipcRenderer.on(BrowserWdinowEventID.WindowMessage, listener)
 }

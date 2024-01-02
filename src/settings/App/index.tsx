@@ -3,7 +3,7 @@ import TitleBar from './TitleBar'
 import './index.scss'
 import MainView from './MainView'
 
-const Index = memo(function Index() {
+const App = memo(function App() {
   return (
     <div className="app">
       <TitleBar />
@@ -12,4 +12,4 @@ const Index = memo(function Index() {
   )
 })
 
-export default Index
+export default App

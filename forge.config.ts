@@ -22,7 +22,7 @@ const config: ForgeConfig = {
       renderer: {
         config: rendererConfig,
         entryPoints: [
-          // 主窗口
+          // MainWindow
           {
             name: 'main_window',
             html: './src/index.html',
@@ -31,11 +31,11 @@ const config: ForgeConfig = {
               js: './src/preload-main.ts',
             },
           },
-          // 弹窗以来的preload
+          // For Popup with Preload
           {
-            name: 'popup_window',
+            name: 'settings_window',
             html: './src/index.html',
-            js: './src/bootstrap-popup.ts',
+            js: './src/bootstrap-settings.ts',
             preload: {
               js: './src/preload-popup.ts',
             },

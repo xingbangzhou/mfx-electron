@@ -1521,6 +1521,11 @@
   dependencies:
     cross-spawn "^7.0.1"
 
+"@mfx-js/core@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@mfx-js/core/-/core-1.0.4.tgz#0b6e53ccb62bf677f55a1a34fb6d1399a5288aa1"
+  integrity sha512-LzTl82cDaSD2dy7xa/cSl6nELNl9g6zG6j591BAg7ljpc5+uVSrbthVWXnZcvZHpyBei7dJkina+Zp9h8uKkcQ==
+
 "@mfx-js/eslint-config-react@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@mfx-js/eslint-config-react/-/eslint-config-react-1.0.4.tgz#53f557529200e18b35599c74e44c9aebde166eec"
@@ -1534,6 +1539,16 @@
     eslint-plugin-react "7.33.2"
     eslint-plugin-react-hooks "^4.6.0"
     prettier "^3.1.1"
+
+"@mfx-js/framework@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@mfx-js/framework/-/framework-1.0.5.tgz#480c2e69dbef6d03590cbc5bfe40186839ac9615"
+  integrity sha512-40WkhGCsJbTM0x/nZ0NBMPkxZO0+F4rxAEfNmxkNNKjh3bKs1pGLxjxMYH2e4uzumS4R6Fjm5JnARHgrN0hUcw==
+
+"@mfx-js/sdk@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@mfx-js/sdk/-/sdk-1.0.4.tgz#b74256119378892605c991cbd0951f7d14f07dd0"
+  integrity sha512-1eCH6wllj/ZK6jIn3lQIhl7nrZq3Nx2RQYMo/EYa6EdUpaypoNxgI2PB5UDAKu0ovKuBI3ztNEX2gr6+tX7wDg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
