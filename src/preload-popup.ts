@@ -1,11 +1,10 @@
 import {contextBridge} from 'electron'
-import {closeDevTools, openDevTools} from './core/devTools/preload'
-import {closeWin, onWinMessage, sendMessageToWin} from './core/browserWins/preload'
+import {closeDevTool, openDevTool, close, onWindowMessage, sendMessageToWindow} from './core/kernel/preload'
 
-contextBridge.exposeInMainWorld('popupElectronApi', {
-  openDevTools: openDevTools,
-  closeDevTools: closeDevTools,
-  closeWin: closeWin,
-  sendMessageToWin: sendMessageToWin,
-  onWinMessage: onWinMessage,
+contextBridge.exposeInMainWorld('electronPopup', {
+  openDevTool: openDevTool,
+  closeDevTool: closeDevTool,
+  close: close,
+  sendMessageToWindow: sendMessageToWindow,
+  onWindowMessage: onWindowMessage,
 })

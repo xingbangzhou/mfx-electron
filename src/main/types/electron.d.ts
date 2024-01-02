@@ -1,6 +1,6 @@
 export {}
 
-interface OpenBrowserWinProps {
+interface OpenBrowserWindowProps {
   url: string
   width: number
   height: number
@@ -10,29 +10,29 @@ interface OpenBrowserWinProps {
   resizable?: boolean
   transparent?: boolean
   useSystemTitleBar?: boolean
+  maximizable?: boolean
 }
 
-interface WinClosedListener {
+interface WindowClosedListener {
   (event: IpcRendererEvent, windowId: number): void
 }
 
-interface WinMessageListener {
+interface WindowMessageListener {
   (event: IpcRendererEvent, data: unknown, windowId?: number): void
 }
 
 declare global {
-  interface MainElectronApi {
-    openDevTools: () => void
-    closeDevTools: () => void
-    openBrowserWin: (props: OpenBrowserWinProps) => Promise<{windowId: number} | undefined>
-    closeBrowserWin: (windowId: number) => void
-    onWinClosed: (listener: WinClosedListener) => void
-    sendMessageToWin: (data: unknown, windowId?: number) => void
-    onWinMessage: (listener: WinMessageListener) => void
-    openSettings: () => Promise<{windowId: number} | undefined>
+  interface ElectronMain {
+    openDevTool: () => void
+    closeDevTool: () => void
+    openBrowserWindow: (props: OpenBrowserWinProps) => Promise<{windowId: number} | undefined>
+    closeBrowserWindow: (windowId: number) => void
+    onWindowClosed: (listener: WindowClosedListener) => void
+    onWindowMessage: (listener: WindowMessageListener) => void
+    sendMessageToWindow: (data: unknown, windowId?: number) => void
   }
 
   interface Window {
-    mainElectronApi: MainElectronApi
+    electronMain: ElectronMain
   }
 }

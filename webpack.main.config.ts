@@ -12,20 +12,15 @@ export const mainConfig: Configuration = {
   module: {
     rules,
   },
-  plugins: [
-    new webpack.EnvironmentPlugin(
-      {FLUENTFFMPEG_COV: false}),
-  ],
+  plugins: [new webpack.EnvironmentPlugin({FLUENTFFMPEG_COV: false})],
   resolve: {
     alias: {
       '@core': path.resolve(__dirname, 'src/core'),
     },
     extensions: ['.js', '.ts', '.json'],
   },
-  externals: [
-    { '@ffmpeg-installer/ffmpeg': { commonjs: '@ffmpeg-installer/ffmpeg' } }
-  ],
+  externals: [{'@ffmpeg-installer/ffmpeg': {commonjs: '@ffmpeg-installer/ffmpeg'}}],
   output: {
     libraryTarget: 'commonjs',
-  }
+  },
 }

@@ -1,9 +1,9 @@
 import {BrowserWindow, app} from 'electron'
-import browserWins from './browserWins'
-import devTools from './devTools'
+import mainFrame from './kernel/mainFrame'
+import devTool from './kernel/devTool'
 
-class ElectronMxCore {
-  setup() {
+class MainRunner {
+  run() {
     if (require('electron-squirrel-startup')) {
       app.quit()
     }
@@ -24,12 +24,14 @@ class ElectronMxCore {
   }
 
   private init = () => {
-    browserWins.init()
-    devTools.init()
-    browserWins.createMainWindow()
+    mainFrame.init()
+    devTool.init()
+
+    // 创建主窗口
+    mainFrame.createMainWindow()
   }
 }
 
-const electronMxCore = new ElectronMxCore()
+const mainRunner = new MainRunner()
 
-export default electronMxCore
+export default mainRunner

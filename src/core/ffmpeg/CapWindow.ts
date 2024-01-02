@@ -1,13 +1,9 @@
 import {BrowserWindow} from 'electron'
-import Ffmpeg from 'fluent-ffmpeg'
+import Ffmpeg from './Ffmpeg'
 import {Readable} from 'stream'
 import fs from 'fs'
 
-console.log('FfmpegInstaller: ', require('@ffmpeg-installer/ffmpeg'))
-
-Ffmpeg.setFfmpegPath(require('@ffmpeg-installer/ffmpeg').path.replace('app.asar', 'app.asar.unpacked'))
-
-export default class CaptureTask {
+export default class CapWindow {
   constructor(wind: BrowserWindow) {
     this._wind = wind
   }
@@ -41,14 +37,6 @@ export default class CaptureTask {
           console.log('Cannot process video: ' + err.message)
         })
         .save(`./.ffmpeg_cache/test${Date.now()}.mp4`)
-
-      const buffer0 = this._buffers[0]
-      this._buffers = []
-      if (buffer0) {
-        fs.writeFile(`./.ffmpeg_cache/test${Date.now()}.png`, buffer0, err => {
-          console.log('save to file: ', err)
-        })
-      }
     }, 10 * 1000)
   }
 

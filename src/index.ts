@@ -1,3 +1,3 @@
-import electronMxCore from './core'
+import mainRunner from './core'
 
-electronMxCore.setup()
+mainRunner.run()

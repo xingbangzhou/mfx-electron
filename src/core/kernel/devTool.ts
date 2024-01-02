@@ -1,20 +1,20 @@
 import {BrowserWindow, ipcMain} from 'electron'
-import {DevToolsOps} from './types'
+import {BrowserWdinowEventID} from './types'
 
-class DevTools {
+class DevTool {
   init() {
-    ipcMain.on(DevToolsOps.OpenDevTools, event => {
+    ipcMain.on(BrowserWdinowEventID.OpenDevTool, event => {
       const win = BrowserWindow.fromWebContents(event.sender)
       win.webContents.openDevTools({mode: 'detach'})
     })
 
-    ipcMain.on(DevToolsOps.CloseDevTools, event => {
+    ipcMain.on(BrowserWdinowEventID.CloseDevTool, event => {
       const win = BrowserWindow.fromWebContents(event.sender)
       win.webContents.closeDevTools()
     })
   }
 }
 
-const devTools = new DevTools()
+const devTool = new DevTool()
 
-export default devTools
+export default devTool
