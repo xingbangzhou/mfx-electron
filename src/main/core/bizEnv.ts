@@ -1,4 +1,4 @@
-import {EventService, invokable} from '@mfx-js/core'
+import {EventService} from '@mfx-js/core'
 
 function invokable5<T extends EventService>(originalMethod: any, context: any) {
   const methodName = context.name
@@ -14,6 +14,8 @@ function invokable5<T extends EventService>(originalMethod: any, context: any) {
 class BizEnv extends EventService {
   constructor() {
     super('BizEnv')
+
+    this.invokable('getEnvInfo', this.getEnvInfo)
   }
 
   @invokable5

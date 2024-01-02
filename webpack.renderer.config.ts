@@ -86,7 +86,7 @@ export const rendererConfig: Configuration = {
   resolve: {
     alias: {
       '@main': path.resolve(__dirname, 'src/main'),
-      '@popup': path.resolve(__dirname, 'src/popup'),
+      '@settings': path.resolve(__dirname, 'src/settings'),
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
   },

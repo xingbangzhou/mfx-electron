@@ -7,3 +7,5 @@ const mxSDK = new MxSDK()
 if (window.electronPopup) {
   mxSDK.activeEx(PopupContext)
 }
+
+export default mxSDK

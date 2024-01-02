@@ -31,7 +31,7 @@ const config: ForgeConfig = {
               js: './src/preload-main.ts',
             },
           },
-          // For Popup with Preload
+          // SettingsWindow
           {
             name: 'settings_window',
             html: './src/index.html',

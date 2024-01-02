@@ -1,6 +1,7 @@
 import React, {memo, useState} from 'react'
 import './index.scss'
 import {useInterval} from 'ahooks'
+import {openWindow} from '@main/core/open'
 
 const MainView = memo(function MainView() {
   const [timeNum, setTimeNum] = useState(0)
@@ -25,7 +26,13 @@ const MainView = memo(function MainView() {
       >
         关闭调试器
       </button>
-      <div className="timing">{timeNum}</div>
+      <button
+        onClick={() => {
+          openWindow({url: 'settings', width: 400, height: 600})
+        }}
+      >
+        打开弹窗
+      </button>
     </div>
   )
 })

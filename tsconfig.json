@@ -15,6 +15,7 @@
     "paths": {
       "@core/*": ["src/core/*"],
       "@main/*": ["src/main/*"],
+      "@settings/*": ["src/settings/*"],
     }
   },
   "include": ["src/**/*"]

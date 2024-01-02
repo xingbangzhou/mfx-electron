@@ -2,9 +2,12 @@ import logger from '@core/utils/logger'
 import {BrowserWindow, ipcMain} from 'electron'
 import {BrowserWdinowEventID, BrowserWindowInvokeID, OpenBrowserWindowProps} from './types'
 
+// main_window
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
-declare const POPUP_WINDOW_PRELOAD_WEBPACK_ENTRY: string
+// settings_window
+declare const SETTINGS_WINDOW_WEBPACK_ENTRY: string
+declare const SETTINGS_WINDOW_PRELOAD_WEBPACK_ENTRY: string
 
 const titleBarOverlay: Electron.TitleBarOverlay = {
   height: 38,
@@ -46,10 +49,21 @@ class MainFrame {
     mainWindow.once('ready-to-show', () => {
       mainWindow.show()
     })
+
+    mainWindow.on('closed', () => {
+      logger.log('MainFrame', 'mianwindow, closed!')
+      this.mainWindow = undefined
+    })
   }
 
   // 创建窗口
   createWindow(props: OpenBrowserWindowProps) {
+    // 路径
+    let url = props.url
+    if (url === 'settings') {
+      url = SETTINGS_WINDOW_WEBPACK_ENTRY
+    }
+    // BrowserWindow
     const browserWindow = new BrowserWindow({
       parent: this.mainWindow,
       width: props.width,
@@ -61,7 +75,7 @@ class MainFrame {
       resizable: props.resizable,
       transparent: props.transparent,
       webPreferences: {
-        preload: POPUP_WINDOW_PRELOAD_WEBPACK_ENTRY,
+        preload: SETTINGS_WINDOW_PRELOAD_WEBPACK_ENTRY,
         webSecurity: false,
       },
       ...(props.useSystemTitleBar
@@ -73,16 +87,17 @@ class MainFrame {
     })
     logger.log('MainFrame', 'createWindow: ', props, browserWindow.id)
 
-    browserWindow.loadURL(props.url)
+    browserWindow.loadURL(url)
     browserWindow.once('ready-to-show', () => {
       browserWindow.show()
+      browserWindow.webContents.openDevTools({mode: 'detach'})
     })
 
     const winId = browserWindow.id
-    browserWindow.on('closed', () => {
+    browserWindow.on('close', () => {
       logger.log('MainFrame', 'window, closed: ', winId)
 
-      this.mainWindow.webContents.send(BrowserWdinowEventID.WindowClosed, winId)
+      this.mainWindow?.webContents?.send(BrowserWdinowEventID.WindowClosed, winId)
     })
 
     return browserWindow
