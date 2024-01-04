@@ -2,7 +2,7 @@ import React, {memo} from 'react'
 import './index.scss'
 import TitleBar from './TitleBar'
 import LeftBar from './LeftBar'
-import MainView from '@main/App/MainView'
+import MainView from './MainView'
 
 const App = memo(function App() {
   return (

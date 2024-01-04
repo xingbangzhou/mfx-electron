@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './assets/css/base.scss'
-import App from './App/index'
+import App from './pages/App'
 import bizCore from './core/bizCore'
 
 bizCore.init()
