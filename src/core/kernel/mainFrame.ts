@@ -1,5 +1,5 @@
 import logger from '@core/utils/logger'
-import {BrowserWindow, ipcMain} from 'electron'
+import {BrowserWindow, ipcMain, globalShortcut} from 'electron'
 import {BrowserWdinowEventID, BrowserWindowInvokeID, OpenBrowserWindowProps} from './types'
 
 // main_window
@@ -54,6 +54,11 @@ class MainFrame {
       logger.log('MainFrame', 'mianwindow, closed!')
       this.mainWindow = undefined
     })
+
+    // 键盘
+    globalShortcut.register('F11', () => {
+      BrowserWindow.getFocusedWindow()?.webContents.openDevTools({mode: 'detach'})
+    })
   }
 
   // 创建窗口
@@ -82,6 +87,8 @@ class MainFrame {
         ? {
             titleBarStyle: 'hidden',
             titleBarOverlay: titleBarOverlay,
+            minimizable: false,
+            maximizable: false,
           }
         : undefined),
     })
@@ -90,12 +97,11 @@ class MainFrame {
     browserWindow.loadURL(url)
     browserWindow.once('ready-to-show', () => {
       browserWindow.show()
-      browserWindow.webContents.openDevTools({mode: 'detach'})
     })
 
     const winId = browserWindow.id
     browserWindow.on('close', () => {
-      logger.log('MainFrame', 'window, closed: ', winId)
+      logger.log('MainFrame', 'window, close: ', winId)
 
       this.mainWindow?.webContents?.send(BrowserWdinowEventID.WindowClosed, winId)
     })
@@ -105,14 +111,14 @@ class MainFrame {
 
   private initInvokes() {
     ipcMain.handle(BrowserWindowInvokeID.OpenBrowserWindow, async (event, props: OpenBrowserWindowProps) => {
-      logger.log('MainFrame', 'OpenBrowserWindow: ', event, props)
+      logger.log('MainFrame', 'OpenBrowserWindow: ', props)
       const browserWindow = this.createWindow(props)
 
       return {windowId: browserWindow.id}
     })
 
     ipcMain.handle(BrowserWindowInvokeID.CloseBrowserWindow, async (event, windowId: number) => {
-      logger.log('MainFrame', 'CloseBrowserWindow: ', event, windowId)
+      logger.log('MainFrame', 'CloseBrowserWindow: ', windowId)
 
       const browserWindow = BrowserWindow.fromId(windowId)
       if (browserWindow && browserWindow !== this.mainWindow) {
@@ -132,7 +138,7 @@ class MainFrame {
 
   private initEvents() {
     ipcMain.on(BrowserWdinowEventID.SendMessageToWindow, (event, data: unknown, windowId = 0) => {
-      logger.log('MainFrame', 'SendMessageToWindow: ', event, data, windowId)
+      logger.log('MainFrame', 'SendMessageToWindow: ', data, windowId)
 
       let toWin: BrowserWindow | undefined = undefined
       if (windowId === 0) {

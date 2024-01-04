@@ -39,12 +39,16 @@ class PopupChannel {
     window.electronMain.onWindowClosed(this.onWindowClosed)
   }
 
-  private onWindowMessage = (_event: any, data: unknown, windowId?: number) => {
+  private onWindowMessage = (_event: any, data: any, windowId?: number) => {
     const popupModule = this._popupModules?.find(el => el.windowId === windowId)
     if (!popupModule) return
 
     try {
-      const msgInfo = typeof data === 'string' ? JSON.parse(decodeBase64UTF8(data)) : data
+      let msgInfo = data
+      if (typeof data === 'string') {
+        const {content} = decodeBase64UTF8(data)
+        msgInfo = JSON.parse(content)
+      }
       const {cmd, args} = msgInfo
       if (Array.isArray(args)) {
         popupModule.onCommand(cmd, ...args)

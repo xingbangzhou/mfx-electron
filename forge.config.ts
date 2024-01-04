@@ -26,7 +26,7 @@ const config: ForgeConfig = {
           {
             name: 'main_window',
             html: './src/index.html',
-            js: './src/bootstrap-main.ts',
+            js: './src/main/bootstrap.ts',
             preload: {
               js: './src/preload-main.ts',
             },
@@ -35,7 +35,7 @@ const config: ForgeConfig = {
           {
             name: 'settings_window',
             html: './src/index.html',
-            js: './src/bootstrap-settings.ts',
+            js: './src/settings/bootstrap.ts',
             preload: {
               js: './src/preload-popup.ts',
             },

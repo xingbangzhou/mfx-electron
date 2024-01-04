@@ -1,6 +1,6 @@
 import React, {memo} from 'react'
-import TitleBar from './TitleBar'
 import './index.scss'
+import TitleBar from './TitleBar'
 import MainView from './MainView'
 
 const App = memo(function App() {

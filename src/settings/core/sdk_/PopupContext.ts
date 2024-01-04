@@ -14,9 +14,13 @@ export default class PopupContext extends MxExContext {
     window.electronPopup.sendMessageToWindow({cmd, args})
   }
 
-  private onWindowMessage = (_event: any, data: unknown, _windowId?: number) => {
+  private onWindowMessage = (_event: any, data: any, _windowId?: number) => {
     try {
-      const msgInfo = typeof data === 'string' ? JSON.parse(decodeBase64UTF8(data)) : data
+      let msgInfo = data
+      if (typeof data === 'string') {
+        const {content} = decodeBase64UTF8(data)
+        msgInfo = JSON.parse(content)
+      }
       const {cmd, args} = msgInfo
       if (Array.isArray(args)) {
         this.onCommand(cmd, ...args)

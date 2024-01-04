@@ -1,13 +1,19 @@
 import {EventService} from '@mfx-js/core'
 
-function invokable5<T extends EventService>(originalMethod: any, context: any) {
+const storedInvokableSymbol = Symbol('mxservice-invokable')
+
+function invokable_t5(originalMethod: any, context: ClassMemberDecoratorContext) {
   const methodName = context.name
   if (context.private) {
     throw new Error(`'invokable5' cannot decorate private properties like ${methodName as string}.`)
   }
-  context.addInitializer(function () {
-    console.log('invokable5', originalMethod, context, this)
-    ;(this as any)[`i5_${methodName}`] = originalMethod
+
+  context.addInitializer(function (this: any) {
+    if (!this[storedInvokableSymbol]) {
+      this[storedInvokableSymbol] = {}
+    }
+
+    this[storedInvokableSymbol][methodName] = originalMethod
   })
 }
 
@@ -18,7 +24,7 @@ class BizEnv extends EventService {
     this.invokable('getEnvInfo', this.getEnvInfo)
   }
 
-  @invokable5
+  @invokable_t5
   getEnvInfo() {
     return {
       version: '1.0.0',
@@ -28,5 +34,7 @@ class BizEnv extends EventService {
 }
 
 const bizEnv = new BizEnv()
+
+console.log('ffffffff', bizEnv)
 
 export default bizEnv
