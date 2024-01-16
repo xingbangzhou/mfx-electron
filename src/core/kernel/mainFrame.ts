@@ -9,12 +9,6 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
 declare const SETTINGS_WINDOW_WEBPACK_ENTRY: string
 declare const SETTINGS_WINDOW_PRELOAD_WEBPACK_ENTRY: string
 
-const titleBarOverlay: Electron.TitleBarOverlay = {
-  height: 38,
-  color: 'rgba(0,0,0,0)',
-  symbolColor: '#898989',
-}
-
 class MainFrame {
   constructor() {}
 
@@ -38,7 +32,11 @@ class MainFrame {
         webSecurity: false,
       },
       titleBarStyle: 'hidden',
-      titleBarOverlay: titleBarOverlay,
+      titleBarOverlay: {
+        height: 48,
+        color: 'rgba(0,0,0,0)',
+        symbolColor: '#898989',
+      },
     }))
     logger.log('MainFrame', 'createMainWindow: ', mainWindow.id)
 
@@ -86,7 +84,11 @@ class MainFrame {
       ...(props.useSystemTitleBar
         ? {
             titleBarStyle: 'hidden',
-            titleBarOverlay: titleBarOverlay,
+            titleBarOverlay: {
+              height: 38,
+              color: 'rgba(0,0,0,0)',
+              symbolColor: '#898989',
+            },
             minimizable: false,
             maximizable: false,
           }

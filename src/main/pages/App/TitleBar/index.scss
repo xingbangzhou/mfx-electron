@@ -1,7 +1,7 @@
 .titleBarContainer {
   position: absolute;
   top: env(titlebar-area-y, 0);
-  height: env(titlebar-area-height, 38);
+  height: env(titlebar-area-height, 48);
   width: 100%;
   background-color: #323233;
 
@@ -13,6 +13,40 @@
     height: 100%;
     left: env(titlebar-area-x, 0);
     width: env(titlebar-area-width, 100%);
+    align-items: center;
     -webkit-app-region: drag;
+
+    .holder {
+      width: 0;
+      flex-grow: 1;
+    }
+
+    .tools {
+      display: flex;
+      align-items: center;
+
+      .setting {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        margin-left: 5px;
+        margin-right: 5px;
+        -webkit-app-region: no-drag;
+
+        &:hover {
+          path {
+            fill: #ffffff !important;
+          }
+        }
+      }
+    }
+
+    .avatar {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
   }
 }

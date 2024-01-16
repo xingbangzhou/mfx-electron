@@ -61,7 +61,7 @@ rules.push({
 
 // PNG
 rules.push({
-  test: /\.png?$/,
+  test: /\.(a?png|jpe?g|gif|webp|ico|bmp|avif)$/i,
   use: [
     {
       loader: 'url-loader',
