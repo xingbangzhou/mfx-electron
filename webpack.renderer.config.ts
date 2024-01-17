@@ -62,14 +62,16 @@ rules.push({
 // PNG
 rules.push({
   test: /\.(a?png|jpe?g|gif|webp|ico|bmp|avif)$/i,
-  use: [
-    {
-      loader: 'url-loader',
-      options: {
-        esModule: false,
-      },
-    },
-  ],
+  type: 'asset/resource',
+  // use: [
+  //   {
+  //     loader: 'url-loader',
+  //     options: {
+  //       limit: 1,
+  //       esModule: false,
+  //     },
+  //   },
+  // ],
 })
 
 // SVG
